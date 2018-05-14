@@ -15,13 +15,13 @@ exit
 mongoimport --db binaryDB D:\mongodb\samples\users.json
 mongo
 show dbs
-```
+**
   admin     0.000GB
   binaryDB  0.001GB
   config    0.000GB
   local     0.000GB
   sampleDB  0.001GB
-```javascript
+**
 use binaryDB
 show collections
 ```
