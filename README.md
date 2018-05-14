@@ -101,9 +101,31 @@ db.users.aggregate([
   { "_id" : "apple", "count" : 4 }
 *****
 ```
+---
+#### 5 - Найти саммого раннего зарегистрировавшегося пользователя с таким любимым фруктом
+{ "_id" : "apple", "count" : 4 }
+```javascript
+db.users.aggregate([
+    {$match:
+      {"favoriteFruit": "apple" }
+    },
+        {$sort: {"registered": 1}},
+	{$limit: 1},
+	{ $project : { _id: 1, index: 1, name: 1, registered: 1, "favoriteFruit": 1  } }
+]).pretty()
+****
+	{
+		"_id" : ObjectId("5adf3c1544abaca147cdd568"),
+		"index" : 541,
+		"name" : "Magdalena Compton",
+		"registered" : "2014-01-02T10:16:56 -02:00",
+		"favoriteFruit" : "apple"
+	}
+****
+```
+---
 
-
-
+---
 
 ```javascript
 ```
