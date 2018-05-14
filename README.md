@@ -26,3 +26,9 @@ show collections
 db.users.findOne()
 ```
 ---
+#### 1 - Найти средний возраст людей в системе
+```javascript
+db.users.aggregate({ $group: {_id: "allUsers", averageAge: {$avg: '$age'} } })
+{ "_id" : "allUsers", "averageAge" : 30.38862559241706 }
+```
+---
