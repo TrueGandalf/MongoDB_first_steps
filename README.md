@@ -48,11 +48,11 @@ db.users.aggregate([
      averageAge: { $avg: '$age' }}}
 ])
 *****
-{ "_id" : "usersFromAlaska", "averageAge" : 31.5 }
+  { "_id" : "usersFromAlaska", "averageAge" : 31.5 }
 *****
 ```
 #### 3 - Начиная от Math.ceil(avg + avg_alaska) (порядковый номер документа в БД ) найти первого человека с другом по имени Деннис
-30,38862559241706+31,5 = 61,88862559241706 => Ceil => 62 => -1 => start from 61
+30,38862559241706+31,5 = 61,88862559241706 => Ceil => 62 => -1 => start after 61
 ```javascript
 db.users.aggregate([
   { $skip : 61 },
@@ -82,4 +82,28 @@ db.users.aggregate([
         ]
 }
 *****
+```
+---
+#### 4 - Найти активных людей из того же штата, что и предыдущий человек и посмотреть какой фрукт любят больше всего в этом штате (аггрегация)
+"address" : "659 Oceanic Avenue, Collins, **Utah**, 6277"
+```javascript
+db.users.aggregate([
+    {$match:
+      { $and: [ { "isActive" : true }, { "address" : /.*Utah.*/ } ] }
+    },
+  {
+        $group : { _id : "$favoriteFruit", count: { $sum: 1 }}
+  },
+	{$sort: {count: -1}},
+        { $limit: 1 }
+])
+*****
+  { "_id" : "apple", "count" : 4 }
+*****
+```
+
+
+
+
+```javascript
 ```
