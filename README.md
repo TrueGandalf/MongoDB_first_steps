@@ -23,5 +23,6 @@ show dbs
 use binaryDB
 show collections
   users
-
+db.users.findOne()
 ```
+---
