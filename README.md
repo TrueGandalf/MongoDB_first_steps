@@ -125,14 +125,28 @@ db.users.aggregate([
 ```
 ---
 #### 6 - Добавить этому пользовелю свойтво: { features: 'first apple eater' }
+"_id" : ObjectId("5adf3c1544abaca147cdd568")
 ```javascript
 db.users.update({_id: ObjectId("5adf3c1544abaca147cdd568")}, {$set: {features: 'first apple eater'}})
 *****
 	WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
 *****
+db.users.find({_id: ObjectId("5adf3c1544abaca147cdd568")}, {name:1,features: 1,index:1}).pretty()
+*****
+	{
+		"_id" : ObjectId("5adf3c1544abaca147cdd568"),
+		"index" : 541,
+		"name" : "Magdalena Compton",
+		"features" : "first apple eater"
+	}
+*****
 ```
-
-
-
+---
+#### 7 - Удалить всех любителей клубники (написать количество удаленных пользователей)
+"favoriteFruit": "strawberry"
 ```javascript
+db.users.remove({"favoriteFruit": "strawberry" })
+*****
+	WriteResult({ "nRemoved" : 253 })
+*****
 ```
