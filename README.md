@@ -124,8 +124,15 @@ db.users.aggregate([
 ****
 ```
 ---
+#### 6 - Добавить этому пользовелю свойтво: { features: 'first apple eater' }
+```javascript
+db.users.update({_id: ObjectId("5adf3c1544abaca147cdd568")}, {$set: {features: 'first apple eater'}})
+*****
+	WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+*****
+```
 
----
+
 
 ```javascript
 ```
