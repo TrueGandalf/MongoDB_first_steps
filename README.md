@@ -36,6 +36,7 @@ db.users.aggregate({ $group: {_id: "allUsers", averageAge: {$avg: '$age'} } })
 *****
   { "_id" : "allUsers", "averageAge" : 30.38862559241706 }
 *****
+```
 ---
 #### 2 - Найти средний возраст в штате Аляска
 ```javascript
