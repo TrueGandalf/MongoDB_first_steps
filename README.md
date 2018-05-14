@@ -51,3 +51,35 @@ db.users.aggregate([
 { "_id" : "usersFromAlaska", "averageAge" : 31.5 }
 *****
 ```
+#### 3 - Начиная от Math.ceil(avg + avg_alaska) (порядковый номер документа в БД ) найти первого человека с другом по имени Деннис
+30,38862559241706+31,5 = 61,88862559241706 => Ceil => 62 => -1 => start from 61
+```javascript
+db.users.aggregate([
+  { $skip : 61 },
+  {$match:
+    {"friends.name": /.*Dennis.*/ } },
+  { $limit: 1 },
+  { $project : {index: 1, name: 1, friends:1 } }
+]).pretty()
+*****
+{
+        "_id" : ObjectId("5adf3c1544abaca147cdd47c"),
+        "index" : 306,
+        "name" : "Esperanza Blevins",
+        "friends" : [
+                {
+                        "id" : 0,
+                        "name" : "Charles Dennis"
+                },
+                {
+                        "id" : 1,
+                        "name" : "Arlene Walton"
+                },
+                {
+                        "id" : 2,
+                        "name" : "Trisha Long"
+                }
+        ]
+}
+*****
+```
