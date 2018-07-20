@@ -1,5 +1,5 @@
-# VerySecretRepository
-JustForThirdHomework
+# MongoDB first steps
+
 
 ## Just • few • requests
 ### Задание:
